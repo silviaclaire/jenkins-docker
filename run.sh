@@ -5,5 +5,6 @@ docker build -f Dockerfile -t jenkins-docker .
 docker run \
     --name jenkins-docker \
     -p 8080:8080 \
+    --group-add $(stat -f '%g' /var/run/docker.sock) \
     -v /var/run/docker.sock:/var/run/docker.sock \
     jenkins-docker
